@@ -45,11 +45,13 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
         ind = self.__indexed_dataset
         if ind is None:
-            ind  = 0
+            ind = 0
         if index >= len(ind):
-            return {'index': index, 'data': [], 'page_size': 0, 'next_index': None}
+            return {'index': index, 'data': [], 'page_size': 0,
+                    'next_index': None}
         start = index
         end = start + page_size
         data = [ind[i] for i in range(start, end) if i in ind]
         next_index = end if end < len(ind) else None
-        return {'index': index, 'data': data, 'page_size': page_size, 'next_index': next_index}
+        return {'index': index, 'data': data, 'page_size': page_size,
+                'next_index': next_index}
